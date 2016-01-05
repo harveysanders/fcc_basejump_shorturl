@@ -2,6 +2,9 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var reqHandler = require(path + '/app/controllers/reqHandler.server.js')
+
+var reqHandler = reqHandler();
 
 module.exports = function (app, passport) {
 
@@ -19,6 +22,12 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
+
+	app.route('/new/:url')
+		.get(reqHandler.shortUrlGenerator);
+
+	app.route('/:url-id')
+		.get(reqHandler.shortUrlRedirect);
 
 	app.route('/login')
 		.get(function (req, res) {
@@ -54,4 +63,6 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);
+	
+	
 };
