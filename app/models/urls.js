@@ -11,7 +11,7 @@ autoIncrement.initialize(connection);
 
 var UrlSchema = new Schema({
 	origUrl: String,
-	shortUrlID: Number
+	shortUrlID: {type: Schema.Types.ObjectId}
 });
 
 UrlSchema.plugin(autoIncrement.plugin, 'Url');
