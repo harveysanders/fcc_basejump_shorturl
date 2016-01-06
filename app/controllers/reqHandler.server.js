@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').load();
+
 var Urls = require('../models/urls.js');
 
 function reqHandler() {
@@ -20,15 +22,24 @@ function reqHandler() {
 
 					newUrl.save(function (err, newUrl, numAffected) {
 						if (err) {throw err;}
+						console.log(newUrl);
+						res.json({
+							original_url: newUrl.origUrl,
+							short_url: process.env.APP_URL + newUrl['_id']
+						});
 						return;
 					});
 				}
 			});
-
-			res.json({
-				original_url: origUrl,
-				short_url: null
-			});
+			// Urls.findOne({ 'origUrl': origUrl}, function(err, doc) {
+			// 	if (err)
+			// 		res.send(err);
+			// 	else if (doc)
+			// 		res.json({
+			// 			original_url: doc.origUrl,
+			// 			short_url: process.env.APP_URL + doc['_id']
+			// 		});
+			// });
 		},
 		shortUrlRedirect: function(req, res) {
 			var shortUrlID = req.params['url'];
