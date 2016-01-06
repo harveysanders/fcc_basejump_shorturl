@@ -12,12 +12,11 @@ function reqHandler() {
 				}
 
 				if (url) {
-					return done(null, url); //???
+					return; 
 				} else {
 					var newUrl = new Urls();
 
 					newUrl.origUrl = origUrl;
-					//newUrl.shortUrlID = 0;
 
 					newUrl.save(function (err, newUrl, numAffected) {
 						if (err) {throw err;}
@@ -32,8 +31,14 @@ function reqHandler() {
 			});
 		},
 		shortUrlRedirect: function(req, res) {
-			var shortUrlID = req.params['url-id'];
-			res.send(shortUrlID);
+			var shortUrlID = req.params['url'];
+			Urls.findOne({ '_id':shortUrlID }, function(err, doc) {
+				if (err) 
+					res.send(err);
+				else
+					res.redirect(doc.origUrl);
+			});
+			//res.send(shortUrlID);
 		}
 	};
 }
