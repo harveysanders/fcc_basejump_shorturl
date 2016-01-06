@@ -20,7 +20,8 @@ function reqHandler() {
         	if (urlValidator(origUrl)) {
 				Urls.findOne({ 'origUrl': origUrl }, function(err, url) {
 					if (err) {
-						throw err;
+						console.log(err);
+						res.send(err);
 					}
 
 					if (url) {
