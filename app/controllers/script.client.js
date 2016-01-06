@@ -5,7 +5,7 @@
 	var apiUrl = appUrl + '/new/';
 
 	function displayShortUrl(data) {
-		var shortUrl = JSON.parse(data).original_url;
+		var shortUrl = JSON.parse(data).short_url;
 		console.log(JSON.parse(data));
 		shortUrlDisplay.innerHTML = shortUrl;
 	}
