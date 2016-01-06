@@ -19,16 +19,17 @@ module.exports = function (app, passport) {
 	var clickHandler = new ClickHandler();
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
-		});
+		.get(function(req, res){res.sendFile(path + '/public/index.html')});
 
+	app.route('/:url')
+		.get(reqHandler.shortUrlRedirect);
+		
 	app.route('/new/:url')
 		.get(reqHandler.shortUrlGenerator);
 
-	app.route('/:url-id')
-		.get(reqHandler.shortUrlRedirect);
+	
 
+	/*
 	app.route('/login')
 		.get(function (req, res) {
 			res.sendFile(path + '/public/login.html');
@@ -63,6 +64,6 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);
-	
+	*/
 	
 };
