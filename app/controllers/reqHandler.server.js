@@ -31,15 +31,6 @@ function reqHandler() {
 					});
 				}
 			});
-			// Urls.findOne({ 'origUrl': origUrl}, function(err, doc) {
-			// 	if (err)
-			// 		res.send(err);
-			// 	else if (doc)
-			// 		res.json({
-			// 			original_url: doc.origUrl,
-			// 			short_url: process.env.APP_URL + doc['_id']
-			// 		});
-			// });
 		},
 		shortUrlRedirect: function(req, res) {
 			var shortUrlID = req.params['url'];
@@ -49,7 +40,6 @@ function reqHandler() {
 				else
 					res.redirect(doc.origUrl);
 			});
-			//res.send(shortUrlID);
 		}
 	};
 }
