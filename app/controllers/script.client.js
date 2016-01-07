@@ -7,7 +7,7 @@
 	function displayShortUrl(data) {
 		var shortUrl = JSON.parse(data).short_url || JSON.parse(data).error;
 		console.log(JSON.parse(data));
-		shortUrlDisplay.innerHTML = shortUrl;
+		shortUrlDisplay.innerHTML = '<a href="' + shortUrl + '">' + shortUrl + '</a>';
 	}
 
 	getUrlBtn.addEventListener('click', function() {

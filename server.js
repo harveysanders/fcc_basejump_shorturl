@@ -10,8 +10,8 @@ var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
-console.log('.env: ' + process.env.MONGOLAB_URI);
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URI);
+//set heroku MONGOLAB_URI to MONGO_URI e.g. heroku config:set MONGO_URI=[value to MONGOLAB_URI]
+mongoose.connect(process.env.MONGO_URI);
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
