@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
-var mongodbURI = process.env.MONGOLAB_URI || process.env.MONGO_URI;
+var mongodbURI = process.env.MONGO_URI; //set heroku MONGOLAB_URI to MONGO_URI e.g. heroku config:set MONGO_URI=[value to MONGOLAB_URI]
 
 require('dotenv').load();
 var connection = mongoose.createConnection(mongodbURI); //for autoIncrement
