@@ -5,9 +5,13 @@
 	var apiUrl = appUrl + '/new/';
 
 	function displayShortUrl(data) {
-		var shortUrl = JSON.parse(data).short_url || JSON.parse(data).error;
-		console.log(JSON.parse(data));
-		shortUrlDisplay.innerHTML = '<a href="' + shortUrl + '">' + shortUrl + '</a>';
+		if (JSON.parse(data).error) {
+			shortUrlDisplay.innerHTML = JSON.parse(data).error;
+		} else {
+			var shortUrl = JSON.parse(data).short_url;
+			shortUrlDisplay.innerHTML = '<a href="' + shortUrl + '">' + shortUrl + '</a>';
+		}
+		
 	}
 
 	getUrlBtn.addEventListener('click', function() {
