@@ -10,6 +10,7 @@ var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
+console.log('.env: ' + process.env);
 mongoose.connect(process.env.MONGO_URI || process.env.MONGOLAB_URI);
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
