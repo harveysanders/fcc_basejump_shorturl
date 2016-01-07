@@ -3,9 +3,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
+var mongodbURI = process.env.MONGOLAB_URI || process.env.MONGO_URI)
 
 require('dotenv').load();
-var connection = mongoose.createConnection(process.env.MONGO_URI); //for autoIncrement
+var connection = mongoose.createConnection(mongodbURI); //for autoIncrement
 
 autoIncrement.initialize(connection);
 
